@@ -28,16 +28,16 @@ Node is DVD player, Express is DVD, terminal is TV, NPM is blockbuster.
 
 
 # TO DO:
-- get hooked up
-- Create user interface in HTML
-    - 2 number inputs
-    - buttons: 
-        - +, -, *, /, =, Clear
 client.js:
    - when = is clicked: 
     capture the input 
     turn it into an object
     send this object to the server via POST
+
+How to do this: Using JQuery:
+    setup onReady for the buttons
+
+    clicksubmit function
 
 Server.js:
     - insert the two inputs and add them
