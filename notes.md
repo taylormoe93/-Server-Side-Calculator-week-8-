@@ -27,28 +27,3 @@ Node is a box that runs JS. How we run JS outside of a browser. A runtime.
 Node is DVD player, Express is DVD, terminal is TV, NPM is blockbuster.
 
 
-# TO DO:
-client.js:
-   - when = is clicked: 
-    capture the input 
-    turn it into an object
-    send this object to the server via POST
-
-How to do this: Using JQuery:
-    setup onReady for the buttons
-
-    clicksubmit function
-
-Server.js:
-    - insert the two inputs and add them
-    - " multiply them
-    - " minus them
-    - " divide them
-    - the output:
-        - send back the OK
-        - GET the answer
-    
-        - display the answer on the DOM
-        - display a history of each equation you enter using a GET request
-        - it should stay on the page even after refreshing
-

@@ -11,7 +11,7 @@ function onReady() {
     // $('#clearButton').on('click', clearFunc); // clear button
 }
 
-let operator = ''; // we make an empty variable for the operator function. 
+let operator = (''); // we make an empty variable for the operator function. 
 
 
 // OPERATOR FUNCTIONS
@@ -44,6 +44,7 @@ function divideFunc() {
     operator = '/';
 };
 
+
 // EQUALS BUTTON
 /*
 Sends the data to the server as POST.
@@ -56,14 +57,28 @@ function equalsFunc() {
         method: 'POST',
         url: '/calculator',
         data: {
-            num1: input1,
-            num2: input2,
+            num1: $('#input1').val(),
+            num2: $('input2').val(),
             operator: operator
         }
-    }).then(function() {
-      $('#input1').val('');
-      $('#input2').val('');
-      operator = '';
-    //   getValues(); will need a get values function to bring the data back
+    }).then(function(response) {
+        console.log(response);
+           getAnswer(); 
     });
 }
+
+function getAnswer(){
+    console.log('in getAnswer')
+    $.ajax({
+        method: 'GET',
+        url: '/calculator',
+    }).then(function(response){
+        $('#answerSpan').val('')
+        renderToDOM(response);
+    })
+}
+
+// function renderToDom
+// console log to make sure it works
+// empty answer to prevent duplicates
+// append calculation answer
