@@ -8,7 +8,7 @@ function onReady() {
     $('#timesButton').on('click', timesFunc); // times button
     $('#divideButton').on('click', divideFunc); // divide button
     $('#equalsButton').on('click', equalsFunc); // equals button
-    $('#clearButton').on('click', clearFunc); // clear button
+    // $('#clearButton').on('click', clearFunc); // clear button
 }
 
 let operator = ''; // we make an empty variable for the operator function. 
@@ -20,32 +20,50 @@ First we make a batch of functions for the operator buttons.
 We'll send the operator value to the server and use it to calculate the equation server-side.
 We'll use this in conjunction with the two number values from the two inputs.
 */
-
 // When the + button is clicked do this:
 function additionFunc() {
-    $('#operatorSpan').empty(); // empty the operator
-    $('#operatorSpan').append('+'); // append with a +
+    console.log('in additionFunc');
     operator = '+'; // change the operator to a string. We'll use this on the server. 
 };
 
 // When the - button is clicked do this:
 function minusFunc() {
-    $('#operatorSpan').empty(); // empty the operator
-    $('#operatorSpan').append('-'); // append with a -
+    console.log('in minusFunc');
     operator = '-';
 };
 
 // When the * button is clicked do this:
 function timesFunc() {
-    $('#operatorSpan').empty();
-    $('#operatorSpan').append('*');
+    console.log('in timesFunc');
     operator = '*';
 };
 
 // When the / button is clicked do this:
 function divideFunc() {
-    $('#operatorSpan').empty();
-    $('#operatorSpan').append('/');
+    console.log('in divideFunc');
     operator = '/';
 };
 
+// EQUALS BUTTON
+/*
+Sends the data to the server as POST.
+Clears the inputs and operator variable.
+Then a function that calls a GET for the data.
+*/
+function equalsFunc() {
+    console.log('in equal function')
+      $.ajax({
+        method: 'POST',
+        url: '/calculator',
+        data: {
+            num1: input1,
+            num2: input2,
+            operator: operator
+        }
+    }).then(function() {
+      $('#input1').val('');
+      $('#input2').val('');
+      operator = '';
+    //   getValues(); will need a get values function to bring the data back
+    });
+}
