@@ -16,7 +16,12 @@ app.listen(PORT, () => {
 });
 
 let calculation = []; // Array we'll push into.
-let answer = {answer: 0}; //
+let answer = {
+    answer: 0
+}; 
+
+
+
 
 // GET AND POST ROUTES
 /*
@@ -39,11 +44,21 @@ app.get('/calculator', (req, res) => {
 
 // POST /calculator Route
 app.post('/calculator', (req, res) => {
+    calculation = [];
     console.log('POST /calculator');
     console.log(req.body);
-    calculation.push(req.body);
+    calculation.push(req.body.num1);
+    calculation.push(req.body.operator);
+    calculation.push(req.body.num2);
+    
     
     res.sendStatus(200); // 'OK'
+})
+
+historyListArray = [];
+
+app.get('/calculator', (req, res) => {
+    historyListArray.push( calculation[0] +' '+calculation[1] +' '+calculation[2] );
 })
 
 // CALCULATION
@@ -57,17 +72,22 @@ IF it's a -, then we'll return an answer for subtraction, etc.
 function calculate(){
 console.log( 'in calculate' );
 
-if( calculation[1] == '+' ){
-    return ( calculation[0] + calculation[2] );
+if( calculation[1] === '+' ){
+    console.log(calculate());
+    return ( Number(calculation[0]) + Number(calculation[2]) );
+    
 }
-if ( calculation[1] == '-' ){
-    return ( calculation[0] - calculation[2] );
+if ( calculation[1] === '-' ){
+    console.log(calculate());
+    return ( Number(calculation[0]) - Number(calculation[2]) );
 }
-if ( calculation[1] == '*' ){
-    return ( calculation[0] * calculation[2] );
+if ( calculation[1] === '*' ){
+    console.log(calculate());
+    return ( Number(calculation[0]) * Number(calculation[2]) );
 }
-if ( calculation[1] == '/' ){
-    return ( calculation[0] / calculation[2] );
+if ( calculation[1] === '/' ){
+    console.log(calculate());
+    return ( Number(calculation[0]) / Number(calculation[2]) );
 }
-}
+};
 

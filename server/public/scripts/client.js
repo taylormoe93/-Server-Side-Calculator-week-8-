@@ -74,9 +74,11 @@ function getAnswer(){
         url: '/calculator',
     }).then(function(response){
         $('#answerSpan').val('')
-        renderToDOM(response);
+        // renderToDOM(response);
     })
 }
+
+
 
 function clearFunc() {
     console.log('in clearFunc');
@@ -89,3 +91,14 @@ function clearFunc() {
 // console log to make sure it works
 // empty answer to prevent duplicates
 // append calculation answer
+function renderToDOM(calculation){
+ console.log('in renderToDOM');
+  //avoid duplicates
+    $('#output').append(`
+    <li>${input.input1} ${input.operator} ${input.input2} = ANSWER?? </li>
+    `)  
+}
+   
+
+  
+  
