@@ -15,10 +15,8 @@ app.listen(PORT, () => {
     console.log('listening on PORT', PORT)
 });
 
-let calculation = [];
-let answer = {answer: 0};
-let num1 = ('');
-let num2 = ('');
+let calculation = []; // Array we'll push into.
+let answer = {answer: 0}; //
 
 // GET AND POST ROUTES
 /*
@@ -46,7 +44,27 @@ app.post('/calculator', (req, res) => {
     calculation.push(req.body);
     
     res.sendStatus(200); // 'OK'
-
 })
 
-   
+// CALCULATION
+/*
+Changing strategy and going this way:
+We have an array with three values in them. Two numbers and an operator. 
+We'll check the value in the array(1) position, which would be between (0) and (3).
+IF it's a + then we'll return an answer for addition. 
+IF it's a -, then we'll return an answer for subtraction, etc.
+*/
+function calculate(){
+if( calculation[1] == '+' ){
+    return ( calculation[0] + calculation[2] );
+}
+if ( calculation[1] == '-' ){
+    return ( calculation[0] - calculation[2] );
+}
+if ( calculation[1] == '*' ){
+    return ( calculation[0] * calculation[2] );
+}
+if ( calculation[1] == '/' ){
+    return ( calculation[0] / calculation[2] );
+}
+}
