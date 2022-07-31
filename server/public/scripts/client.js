@@ -78,7 +78,7 @@ function getAnswer(){
     })
 }
 
-// function renderToDom
+// RENDER TO DOM
 // console log to make sure it works
 // empty answer to prevent duplicates
 // append calculation answer
