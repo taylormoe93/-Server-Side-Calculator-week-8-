@@ -55,6 +55,8 @@ IF it's a + then we'll return an answer for addition.
 IF it's a -, then we'll return an answer for subtraction, etc.
 */
 function calculate(){
+console.log( 'in calculate' );
+
 if( calculation[1] == '+' ){
     return ( calculation[0] + calculation[2] );
 }
@@ -68,3 +70,4 @@ if ( calculation[1] == '/' ){
     return ( calculation[0] / calculation[2] );
 }
 }
+

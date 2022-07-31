@@ -8,7 +8,7 @@ function onReady() {
     $('#timesButton').on('click', timesFunc); // times button
     $('#divideButton').on('click', divideFunc); // divide button
     $('#equalsButton').on('click', equalsFunc); // equals button
-    // $('#clearButton').on('click', clearFunc); // clear button
+    $('#clearButton').on('click', clearFunc); // clear button
 }
 
 let operator = (''); // we make an empty variable for the operator function. 
@@ -58,7 +58,7 @@ function equalsFunc() {
         url: '/calculator',
         data: {
             num1: $('#input1').val(),
-            num2: $('input2').val(),
+            num2: $('#input2').val(),
             operator: operator
         }
     }).then(function(response) {
@@ -68,7 +68,7 @@ function equalsFunc() {
 }
 
 function getAnswer(){
-    console.log('in getAnswer')
+    console.log('in getAnswer');
     $.ajax({
         method: 'GET',
         url: '/calculator',
@@ -76,6 +76,13 @@ function getAnswer(){
         $('#answerSpan').val('')
         renderToDOM(response);
     })
+}
+
+function clearFunc() {
+    console.log('in clearFunc');
+    $('#input1').val('');
+    $('#input2').val('');
+    // Clear out the backend too
 }
 
 // RENDER TO DOM
