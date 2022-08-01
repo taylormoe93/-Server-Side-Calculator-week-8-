@@ -28,17 +28,7 @@ perform the calculations,
 and then push the answer back to the client.
 */
 
-/*
-API GET /calculator
-req is request object
-res is response object
-/route
-*/
-app.get('/calculator', (req, res) => {
-    console.log('GET /calculator');
-    calculate();
-    res.send(answer);
-})
+
 
 // POST /calculator Route
 app.post('/calculator', (req, res) => {
@@ -66,14 +56,17 @@ We have an array with three values in them. Two numbers and an operator.
 We'll check the value in the array(1) position, which would be between (0) and (3).
 IF it's a + then we'll return an answer for addition. 
 IF it's a -, then we'll return an answer for subtraction, etc.
+We need to loop through the answers array and harvest the necessary data sent via the inputs.
 */
+
 function calculate(){
 console.log( 'in calculate' );
-for (let value of answers) {
+let answer;
+for (let taco of answers) {
+    
 if( calculation[1] === '+' ){
     console.log(calculate());
     answer = ( Number(calculation[0]) + Number(calculation[2]) );
-    
 }
 else if ( calculation[1] === '-' ){
     console.log(calculate());
@@ -88,7 +81,18 @@ else if ( calculation[1] === '/' ){
     answer = ( Number(calculation[0]) / Number(calculation[2]) );
 }
 }
-return answers.push({total: answer})
+return answers.push({total: answer}) // Take result and make an answer object.
 }
 
 
+/*
+API GET /calculator
+req is request object
+res is response object
+/route
+*/
+app.get('/calculator', (req, res) => {
+    console.log('GET /calculator');
+    calculate();
+    res.send(answers);
+})
