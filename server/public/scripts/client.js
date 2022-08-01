@@ -63,7 +63,7 @@ function equalsFunc() {
         }
     }).then(function(response) {
         console.log(response);
-           getAnswer(); 
+        getAnswer(); 
     });
 }
 
@@ -78,24 +78,23 @@ function getAnswer(){
     })
 }
 
-
-
 function clearFunc() {
     console.log('in clearFunc');
     $('#input1').val('');
     $('#input2').val('');
-    // Clear out the backend too
 }
 
 // RENDER TO DOM
 // console log to make sure it works
 // empty answer to prevent duplicates
-// append calculation answer
+// append answer
 function renderToDOM(){
  console.log('in renderToDOM');
   //avoid duplicates
+  // have version with .value just to test
     $('#output').append(`
-    <li>${input.input1} ${input.operator} ${input.input2} </li>
+    <li>${input1} ${operator} ${input2}</li> 
+    <li>${input1.value} ${operator} ${input2.value}</li>
     `)  
 }
    

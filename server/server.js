@@ -15,7 +15,7 @@ app.listen(PORT, () => {
     console.log('listening on PORT', PORT)
 });
 
-let calculation = []; // data from the calculator
+let calcData = []; // data from the calculator
 let answers = []; // the answers to push back to the client
 
 // CALCULATION
@@ -30,60 +30,54 @@ We need to loop through the answers array and harvest the necessary data sent vi
 
 function calculate(){
 console.log( 'in calculate' );
+
 let answer;
 for (let taco of answers) {
-    
-if( calculation[1] === '+' ){
+if( calcData[1] === '+' ){
     console.log(calculate());
-    answer = ( Number(calculation[0]) + Number(calculation[2]) );
+    answer = ( Number(calcData[0]) + Number(calcData[2]) );
 }
-else if ( calculation[1] === '-' ){
+else if ( calcData[1] === '-' ){
     console.log(calculate());
-    answer = ( Number(calculation[0]) - Number(calculation[2]) );
+    answer = ( Number(calcData[0]) - Number(calcData[2]) );
 }
-else if ( calculation[1] === '*' ){
+else if ( calcData[1] === '*' ){
     console.log(calculate());
-    answer = ( Number(calculation[0]) * Number(calculation[2]) );
+    answer = ( Number(calcData[0]) * Number(calcData[2]) );
 }
-else if ( calculation[1] === '/' ){
+else if ( calcData[1] === '/' ){
     console.log(calculate());
-    answer = ( Number(calculation[0]) / Number(calculation[2]) );
-}
-}
+    answer = ( Number(calcData[0]) / Number(calcData[2]) );
+        }
+    }
 return answers.push({total: answer}) // Take result and make an answer object.
 }
-
-
-
 
 // GET AND POST ROUTES
 /*
 We'll take the data from the client and pul it to the server, 
 perform the calculations,
 and then push the answer back to the client.
-*/
-
-/*
 API GET /calculator
 req is request object
 res is response object
 /route
 */
-app.get('/calculator', (req, res) => {
-    console.log('GET /calculator');
-    calculate();
-    res.send(answers);
-})
 
 // POST /calculator Route
+// receive client data from inputs
 app.post('/calculator', (req, res) => {
-    calculation = [];
+    calcData = [];
     console.log('POST /calculator');
     console.log(req.body);
-    calculation.push(req.body.num1);
-    calculation.push(req.body.operator);
-    calculation.push(req.body.num2);
-    
-    
+    calcData.push(req.body);
+    calculate(calcData);
+   
     res.sendStatus(200); // 'OK'
+})
+
+// send answer to the client
+app.get('/calculator', (req, res) => {
+    console.log('GET /calculator');
+    res.send(answers);
 })
