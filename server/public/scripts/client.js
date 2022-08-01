@@ -74,7 +74,7 @@ function getAnswer(){
         url: '/calculator',
     }).then(function(response){
         $('#answerSpan').val('')
-        // renderToDOM(response);
+        renderToDOM(response);
     })
 }
 
@@ -95,7 +95,7 @@ function renderToDOM(calculation){
  console.log('in renderToDOM');
   //avoid duplicates
     $('#output').append(`
-    <li>${input.input1} ${input.operator} ${input.input2} = ANSWER?? </li>
+    <li>${input.input1} ${input.operator} ${input.input2} </li>
     `)  
 }
    

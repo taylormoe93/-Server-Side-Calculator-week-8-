@@ -16,9 +16,7 @@ app.listen(PORT, () => {
 });
 
 let calculation = []; // Array we'll push into.
-let answer = {
-    answer: 0
-}; 
+let answers = [];
 
 
 
@@ -71,23 +69,26 @@ IF it's a -, then we'll return an answer for subtraction, etc.
 */
 function calculate(){
 console.log( 'in calculate' );
-
+for (let value of answers) {
 if( calculation[1] === '+' ){
     console.log(calculate());
-    return ( Number(calculation[0]) + Number(calculation[2]) );
+    answer = ( Number(calculation[0]) + Number(calculation[2]) );
     
 }
-if ( calculation[1] === '-' ){
+else if ( calculation[1] === '-' ){
     console.log(calculate());
-    return ( Number(calculation[0]) - Number(calculation[2]) );
+    answer = ( Number(calculation[0]) - Number(calculation[2]) );
 }
-if ( calculation[1] === '*' ){
+else if ( calculation[1] === '*' ){
     console.log(calculate());
-    return ( Number(calculation[0]) * Number(calculation[2]) );
+    answer = ( Number(calculation[0]) * Number(calculation[2]) );
 }
-if ( calculation[1] === '/' ){
+else if ( calculation[1] === '/' ){
     console.log(calculate());
-    return ( Number(calculation[0]) / Number(calculation[2]) );
+    answer = ( Number(calculation[0]) / Number(calculation[2]) );
 }
-};
+}
+return answers.push({total: answer})
+}
+
 
