@@ -73,7 +73,7 @@ function getAnswer(){
         method: 'GET',
         url: '/calculator',
     }).then(function(response){
-        $('#answerSpan').val('')
+        $('#output').val('')
         renderToDOM(response);
     })
 }
@@ -91,7 +91,7 @@ function clearFunc() {
 // console log to make sure it works
 // empty answer to prevent duplicates
 // append calculation answer
-function renderToDOM(calculation){
+function renderToDOM(){
  console.log('in renderToDOM');
   //avoid duplicates
     $('#output').append(`

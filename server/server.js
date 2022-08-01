@@ -15,39 +15,8 @@ app.listen(PORT, () => {
     console.log('listening on PORT', PORT)
 });
 
-let calculation = []; // Array we'll push into.
-let answers = [];
-
-
-
-
-// GET AND POST ROUTES
-/*
-We'll take the data from the client and pul it to the server, 
-perform the calculations,
-and then push the answer back to the client.
-*/
-
-
-
-// POST /calculator Route
-app.post('/calculator', (req, res) => {
-    calculation = [];
-    console.log('POST /calculator');
-    console.log(req.body);
-    calculation.push(req.body.num1);
-    calculation.push(req.body.operator);
-    calculation.push(req.body.num2);
-    
-    
-    res.sendStatus(200); // 'OK'
-})
-
-historyListArray = [];
-
-app.get('/calculator', (req, res) => {
-    historyListArray.push( calculation[0] +' '+calculation[1] +' '+calculation[2] );
-})
+let calculation = []; // data from the calculator
+let answers = []; // the answers to push back to the client
 
 // CALCULATION
 /*
@@ -85,6 +54,15 @@ return answers.push({total: answer}) // Take result and make an answer object.
 }
 
 
+
+
+// GET AND POST ROUTES
+/*
+We'll take the data from the client and pul it to the server, 
+perform the calculations,
+and then push the answer back to the client.
+*/
+
 /*
 API GET /calculator
 req is request object
@@ -95,4 +73,17 @@ app.get('/calculator', (req, res) => {
     console.log('GET /calculator');
     calculate();
     res.send(answers);
+})
+
+// POST /calculator Route
+app.post('/calculator', (req, res) => {
+    calculation = [];
+    console.log('POST /calculator');
+    console.log(req.body);
+    calculation.push(req.body.num1);
+    calculation.push(req.body.operator);
+    calculation.push(req.body.num2);
+    
+    
+    res.sendStatus(200); // 'OK'
 })
