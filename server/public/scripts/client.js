@@ -58,8 +58,8 @@ function equalsFunc() {
         url: '/calculator',
         data: {
             num1: $('#input1').val(),
+            operator: operator,
             num2: $('#input2').val(),
-            operator: operator
         }
     }).then(function(response) {
         console.log(response);
