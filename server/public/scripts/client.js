@@ -88,15 +88,21 @@ function clearFunc() {
 // console log to make sure it works
 // empty answer to prevent duplicates
 // append answer
-function renderToDOM(){
+function renderToDOM(response){
  console.log('in renderToDOM');
   //avoid duplicates
   // have version with .value just to test
     $('#output').append(`
-    <li>${input1} ${operator} ${input2}</li> 
+    <li>${response[0].total}</li> 
     <li>${input1.value} ${operator} ${input2.value}</li>
     `)  
 }
+
+// function answerOnDOM(answers) {
+//     for(let answer of answers) {
+//         $('#answer').append(`${answers.answerOutput}`)
+//     }
+// }
    
 
   

@@ -32,26 +32,28 @@ function calculate(){
 console.log( 'in calculate' );
 
 let answer;
-for (let taco of answers) {
-if( calcData[1] === '+' ){
-    console.log(calculate());
-    answer = ( Number(calcData[0]) + Number(calcData[2]) );
+
+if( calcData[0].operator === '+' ){
+    
+    answer = ( Number(calcData[0].num1) + Number(calcData[0].num2) );
 }
-else if ( calcData[1] === '-' ){
-    console.log(calculate());
-    answer = ( Number(calcData[0]) - Number(calcData[2]) );
+else if ( calcData[0].operator === '-' ){
+    
+    answer = ( Number(calcData[0].num1) - Number(calcData[0].num2) );
 }
-else if ( calcData[1] === '*' ){
-    console.log(calculate());
-    answer = ( Number(calcData[0]) * Number(calcData[2]) );
+else if ( calcData[0].operator === '*' ){
+   
+    answer = ( Number(calcData[0].num1) * Number(calcData[0].num2) );
+    
 }
-else if ( calcData[1] === '/' ){
-    console.log(calculate());
-    answer = ( Number(calcData[0]) / Number(calcData[2]) );
+else if ( calcData[0].operator === '/' ){
+   
+    answer = ( Number(calcData[0].num1) / Number(calcData[0].num2) );
         }
+answers = [];
+answers.push({total: answer})        
+return {total: answer}; // Take result and make an answer object.
     }
-return answers.push({total: answer}) // Take result and make an answer object.
-}
 
 // GET AND POST ROUTES
 /*
@@ -69,9 +71,9 @@ res is response object
 app.post('/calculator', (req, res) => {
     calcData = [];
     console.log('POST /calculator');
-    console.log(req.body);
+    console.log('req is', req.body);
     calcData.push(req.body);
-    calculate(calcData);
+    calculate();
    
     res.sendStatus(200); // 'OK'
 })
