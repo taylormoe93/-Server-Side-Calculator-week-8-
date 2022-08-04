@@ -6,7 +6,7 @@ const express = require('express');
 // this makes localhost 5000 work
 // serve static files in server/public folder
 const app = express();
-const PORT = 5000;
+const PORT = process.env.port || 5000;
 app.use(express.static('server/public'));
 app.use(express.urlencoded({extended : true}));
 
